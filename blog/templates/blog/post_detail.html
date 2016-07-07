@@ -1,0 +1,33 @@
+
+<h1>{{ post.title }}</h1>
+
+<img src="{{ post.photo.url }}" style="width: 300px;" />
+
+{{ post.lnglat }}
+
+<div id="map" style="width: 500px; height: 500px;"></div>
+<script type="text/javascript">
+var map;
+function initMap() {
+    var position = {lat: {{ post.lat }}, lng: {{ post.lng }} };
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: position,
+        zoom: 8
+    });
+    var marker = new google.maps.Marker({
+        position: position,
+        map: map
+    });
+}
+</script>
+
+
+{{ post.created_at }}
+
+{{ post.updated_at }}
+
+<hr/>
+
+{{ post.content }}
+
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
